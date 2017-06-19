@@ -50,7 +50,7 @@ dslcfast:
 			--test_out $(OUT)/test-dslfast.txt \
 			--labels $(FEAT_DSL)/labels.txt \
 			--dev_iters 200 \
-			--train_max 1000 --dev_max 100 --test_max 100 
+			--train_max 3000 --dev_max 100 --test_max 100 
 	
 tat: tatf tatc
 

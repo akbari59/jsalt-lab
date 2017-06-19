@@ -9,37 +9,40 @@ from builtins import str
 from builtins import range
 from builtins import *
 
+import string
 import argparse
+import random
 
 def main(args):
     with open(args.input, 'r', encoding='utf-8') as f_in:
+        lines = f_in.readlines()
+        random.shuffle(lines)
         with open(args.output, 'w', encoding='utf-8') as f_out:
-            for line in f_in:
+            for line in lines:
                 # Read / parse line
                 lang, sent = line.strip().split('\t')
 
                 # Write features
                 f_out.write(lang)
                 f_out.write('\t')
-
-                #if lang == 'cmn' or lang == 'jpn':
+                if lang == 'cmn' or lang == 'jpn':
                     # Treat each character as a feature, since there are no words.
-                    #    for ch in sent:
-                    #    f_out.write(ch)
-                    #    f_out.write(' ')
-                    #else:
+                    for ch in sent:
+                        f_out.write(ch)
+                        f_out.write(' ')
+                else:
                     # Treat each word as a feature.
-                    #words = sent.split(' ')
-                    #for word in words:
-                    #f_out.write(word)
-                    #    f_out.write(' ')
-                for i, ch in enumerate(sent.replace(' ', '_')):
-                    f_out.write(sent[i:i+1] + ' ')
-                    f_out.write(sent[i:i+2] + ' ')
+                    words = sent.split(' ')
+                    for word in words:
+                        f_out.write("".join(c for c in word if c not in (string.punctuation)).lower())
+                        f_out.write(' ')
+                for i, ch in enumerate(sent.replace(' ', '_')[:-2]):
+                    #f_out.write(sent[i:i+1] + ' ')
+                    #f_out.write(sent[i:i+2] + ' ')
                     f_out.write(sent[i:i+3] + ' ')
-                    f_out.write(sent[i:i+4] + ' ')
-                    f_out.write(sent[i:i+5] + ' ')
-                    f_out.write(sent[i:i+6] + ' ')
+                    #f_out.write(sent[i:i+4] + ' ')
+                    #f_out.write(sent[i:i+5] + ' ')
+                    #f_out.write(sent[i:i+6] + ' ')
                 f_out.write('\n')
                 
 if __name__ == '__main__':
