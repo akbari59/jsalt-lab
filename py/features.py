@@ -21,6 +21,7 @@ def main(args):
                 # Write features
                 f_out.write(lang)
                 f_out.write('\t')
+
                 #if lang == 'cmn' or lang == 'jpn':
                     # Treat each character as a feature, since there are no words.
                     #    for ch in sent:
@@ -32,9 +33,13 @@ def main(args):
                     #for word in words:
                     #f_out.write(word)
                     #    f_out.write(' ')
-                for i, ch in enumerate(sent[:-2]):
-                    trigram = sent[i:i+3].replace(' ', '_')
-                    f_out.write(trigram + ' ')
+                for i, ch in enumerate(sent.replace(' ', '_')):
+                    f_out.write(sent[i:i+1] + ' ')
+                    f_out.write(sent[i:i+2] + ' ')
+                    f_out.write(sent[i:i+3] + ' ')
+                    f_out.write(sent[i:i+4] + ' ')
+                    f_out.write(sent[i:i+5] + ' ')
+                    f_out.write(sent[i:i+6] + ' ')
                 f_out.write('\n')
                 
 if __name__ == '__main__':
