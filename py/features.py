@@ -31,7 +31,7 @@ def main(args):
                     # Treat each word as a feature.
                     words = sent.split(' ')
                     for word in words:
-                        f_out.write(word.translate(string.maketrans("",""), string.punctuation).lower())
+                        f_out.write("".join(c for c in word if c not in (string.punctuation)).lower())
                         f_out.write(' ')
                     #for i, ch in enumerate(sent[:-2]):
                     #trigram = sent[i:i+3].replace(' ', '_')
