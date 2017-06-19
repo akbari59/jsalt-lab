@@ -9,6 +9,7 @@ from builtins import str
 from builtins import range
 from builtins import *
 
+import string
 import argparse
 
 def main(args):
@@ -30,7 +31,7 @@ def main(args):
                     # Treat each word as a feature.
                     words = sent.split(' ')
                     for word in words:
-                        f_out.write(word)
+                        f_out.write(word.translate(string.maketrans("",""), string.punctuation).lower())
                         f_out.write(' ')
                     #for i, ch in enumerate(sent[:-2]):
                     #trigram = sent[i:i+3].replace(' ', '_')
