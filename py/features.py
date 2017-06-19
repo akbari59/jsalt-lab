@@ -33,7 +33,8 @@ def main(args):
                     #f_out.write(word)
                     #    f_out.write(' ')
                 for i, ch in enumerate(sent[:-2]):
-                    f_out.write(sent[i:i+3] + ' ')
+                    trigram = sent[i:i+3].replace(' ', '_')
+                    f_out.write(trigram + ' ')
                 f_out.write('\n')
                 
 if __name__ == '__main__':
